@@ -1,3 +1,4 @@
+#define IMPORTAL_PREFS 1
 // Importal Phase 2 — Privacy Hardening Defaults
 // Build-time shipped defaults (not user prefs)
 
