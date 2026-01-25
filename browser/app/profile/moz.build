@@ -1,0 +1,6 @@
+PREF_JS_EXPORTS += [
+    "firefox.js",
+    "firefox-branding.js",
+    "firefox-l10n.js",
+    "importal.js",
+]
