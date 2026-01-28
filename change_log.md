@@ -116,3 +116,7 @@ governance is now codified.
 `change_log.md` (this entry).
 
 ------------------------------------------------------------------------
+
+## Phase 7 — Foundation Document v4 assimilation
+
+- Recorded ingestion of Foundation Document v4 as authoritative source (no semantic changes in this entry).
