@@ -3402,3 +3402,8 @@ pref("browser.contextual-services.contextId.rust-component.enabled", true);
 
 // Pref to enable the IP protection feature
 pref("browser.ipProtection.enabled", false);
+
+// === Importal Phase 2 — Privacy Hardening Defaults (must be last) ===
+pref("app.normandy.enabled", false);
+pref("toolkit.telemetry.enabled", false);
+pref("datareporting.healthreport.uploadEnabled", false);
