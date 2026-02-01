@@ -93,3 +93,12 @@
 | `importal_specs__opencode_review/verification_map.md`                                    | `verification_map.md`                    | unclassified |
 | `importal_specs__opencode_review/version_differentiation.md`                             | `version_differentiation.md`             | unclassified |
 | `importal_specs__opencode_review/window_type_spec.md`                                    | `window_type_spec.md`                    | unclassified |
+
+## legacy_non_authoritative_archived
+
+This section is a routing label only.
+
+Any artefact listed under this heading is legacy, non-authoritative, and archived for agent-routing purposes.
+
+Legacy spec corpus input is provided externally as an attachment (not in-repo). Do not assume any in-repo path for it.
+

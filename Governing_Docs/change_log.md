@@ -12,3 +12,8 @@ This log records authorised changes to the Importal documentation system.
 
 - This log is additive. Do not retroactively rewrite prior entries.
 - Link audit outputs and verification artefacts from here as required by Phase 6.
+
+2026-01-30: Governance tidy-up Step 2 (mechanical)
+- docs/spec_registry.md: added required legacy routing label token legacy_non_authoritative_archived for agent activation compliance.
+- No semantic changes; routing label and governance compliance only.
+
