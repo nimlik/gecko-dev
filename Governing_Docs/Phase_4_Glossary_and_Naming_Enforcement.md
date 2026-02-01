@@ -1,7 +1,7 @@
 # Phase 4: Glossary and Naming Enforcement (Updated for Feature-First Specs)
 
 Status: Binding
-Last updated: 2026-01-28
+Last updated: 2026-02-01
 
 ## 0. Purpose
 
@@ -19,9 +19,82 @@ Glossary entry:
 - allowed variants (if any)
 - authoritative references (links to constraints/stop-signs/specs)
 
-Naming enforcement:
+### 1.1 Naming enforcement (normative)
 
-- canonical names for entities that must not be renamed (files, components, user-facing objects, internal concepts)
+This section prevents collisions where multiple artefacts appear authoritative (for example, multiple “Phase N” documents across different folders or formats).
+
+Definitions:
+
+- First heading means the first Markdown H1 line in a file (a line starting with “# ”).
+- Phase heading means a first heading that matches “# Phase [0-9]+:”.
+- Self-identified non-authority Phase heading means a first heading that matches “# (PROMPT|WORKBENCH|ARCHIVED) — Phase [0-9]+:”.
+
+Rule 0: Canonical entity names must not be renamed
+
+Canonical names are frozen and must not be renamed by tidying, normalisation, or collision resolution. Canonical names include, but are not limited to:
+
+- files
+- components
+- user-facing objects
+- internal concepts
+
+Operational test:
+
+- If an entity name appears as canonical in Governing_Docs/* or is referenced as canonical in docs/spec_registry.md, it is frozen for naming purposes.
+
+Collision resolution constraint:
+
+- If a naming collision involves a frozen canonical name, resolve by disambiguating via location and explicit non-authority labelling (PROMPT/WORKBENCH/ARCHIVED), not by renaming the canonical entity.
+
+Rule 1: Governance-only Phase headings
+
+Only files under Governing_Docs/ may use a Phase heading as the first heading.
+
+Enforcement:
+
+- Outside Governing_Docs/, the first heading must not match “# Phase [0-9]+:”.
+
+Rule 2: Prompts, workbench, and archived artefacts must self-identify
+
+Files outside Governing_Docs/ must not present themselves as governance.
+
+If an artefact outside Governing_Docs/ needs to reference a phase in its first heading, it must use a self-identified non-authority Phase heading (PROMPT/WORKBENCH/ARCHIVED).
+
+Enforcement:
+
+- Outside Governing_Docs/, any first heading that references a phase must begin with one of:
+  - “PROMPT — Phase N: …”
+  - “WORKBENCH — Phase N: …”
+  - “ARCHIVED — Phase N: …”
+
+Rule 3: Canonical locations
+
+Canonical locations are mandatory. Artefacts outside their canonical location are non-authoritative by default.
+
+- Governing_Docs/ is the only canonical location for Phase 0–6 governance artefacts and change_log authority artefacts.
+- docs/spec_registry.md is the canonical routing index for agents.
+- docs/agent_prompts/ is the canonical location for non-authoritative prompts.
+- docs/phase_5/workbench/ is the canonical location for Phase 5 workbench artefacts (non-authoritative).
+- docs/archive/ is the canonical location for legacy and superseded artefacts (non-authoritative).
+
+Rule 4: Filename prefixes for non-authoritative artefacts
+
+Any non-authoritative artefact must use an explicit non-authority filename prefix:
+
+- PROMPT__...
+- WORKBENCH__...
+- ARCHIVED__...
+
+This rule applies regardless of whether the file mentions a phase.
+
+Rule 5: Prohibition on “Phase_*” filenames outside governance
+
+No file outside Governing_Docs/ may be named “Phase_*” or begin with “Phase_”.
+
+If such a file exists outside Governing_Docs/, it is a collision candidate and must be resolved by either:
+
+- moving it to docs/archive/ with an ARCHIVED__ filename prefix and an in-file archive banner, or
+- renaming it with a non-authority filename prefix (PROMPT__/WORKBENCH__) and ensuring its first heading is self-identified non-authority.
 
 ## 2. Feature bundle interaction (normative)
 
@@ -61,5 +134,13 @@ If a naming or term issue is detected, agents must:
 
 - stop
 - identify the conflicting term/name
-- propose the minimal corrective change to the relevant artefact
+- cite the exact file path(s) and the exact first heading/filename causing the collision
+- propose the minimal corrective change to the relevant artefact(s)
 - avoid changing code naming unless explicitly instructed
+
+STOP conditions (non-exhaustive):
+
+- Any file outside Governing_Docs/ has a Phase heading as its first heading.
+- Any file outside Governing_Docs/ uses a “Phase_*” filename.
+- Any non-authoritative artefact lacks a required non-authority filename prefix where Rule 4 applies.
+- Any collision resolution would require renaming a frozen canonical entity (Rule 0).
