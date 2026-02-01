@@ -17,3 +17,5 @@ This log records authorised changes to the Importal documentation system.
 - docs/spec_registry.md: added required legacy routing label token legacy_non_authoritative_archived for agent activation compliance.
 - No semantic changes; routing label and governance compliance only.
 
+2026-01-02: added naming collision rules, first-heading definition, STOP triggers, filename prefix rules.
+
