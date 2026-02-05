@@ -32,17 +32,17 @@ pref("nimbus.enabled", false);
 // ===============================
 // Remote Settings
 // ===============================
-pref("services.settings.server", "");
-pref("services.settings.poll_interval", 0);
+// pref("services.settings.server", "");
+// pref("services.settings.poll_interval", 0);
 
 // ===============================
 // Updates (hard off)
 // ===============================
-pref("app.update.enabled", false);
-pref("app.update.auto", false);
-pref("app.update.background.enabled", false);
-pref("app.update.staging.enabled", false);
-pref("app.update.service.enabled", false);
+// pref("app.update.enabled", false);
+// pref("app.update.auto", false);
+// pref("app.update.background.enabled", false);
+// pref("app.update.staging.enabled", false);
+// pref("app.update.service.enabled", false);
 
 // ===============================
 // Crash Reporting (hard off)
