@@ -1,0 +1,2 @@
+95c55d6c6dff (HEAD -> phase2-telemetry-hardening, origin/phase2-telemetry-hardening) Phase 2: add Importal default prefs file (not yet wired)
+91160cf7b7c3 Phase 2: disable Normandy and Health Report implied options
