@@ -1,5 +1,3 @@
-# docs/agent_activation_rules.md
-
 # Agent Activation Rules
 
 Status: Canonical
@@ -8,9 +6,18 @@ Status: Canonical
 
 Importal is a closed authority system. Agents MUST NOT invent context, guess file paths, or initiate network traffic.
 
-Work must be grounded solely in the canonical artefacts enumerated in `docs/spec_registry.md` and `Governing_Docs/`.
+Work must be grounded solely in the canonical artefacts enumerated in `docs/spec_registry.md`, plus the authoritative governance stack under `Governing_Docs/`.
 
-If an artefact cannot be located, STOP under SS-04.
+All non-authoritative artefacts must live under exactly one of:
+  - docs/non_authority/ (active work products / scratch / working notes)
+  - docs/archive/ (superseded / legacy / preserved historical copies)
+
+Both non-authority folders are refuse-by-default unless the user explicitly instructs consultation.
+
+Obsolete path rule (hard):
+- `docs/phase_5/workbench/` is obsolete and MUST NOT be referenced, used, or treated as canonical.
+
+If an artefact cannot be located at its canonical path, STOP under SS-04.
 
 ## Hard gates (apply to all roles)
 
@@ -35,21 +42,25 @@ Collision report format (mandatory):
 4. Stop-sign invoked (SS-09)
 5. Minimum question(s) needed to proceed
 
-### 2) Legacy artefact routing rule (hard gate)
+### 2) Legacy and non-authoritative routing rules (hard gate)
 
 Canonical legacy label token:
 
 - `legacy_non_authoritative_archived`
 
-Definition:
+Definitions:
 
 - Any artefact in a section labelled `legacy_non_authoritative_archived` in `docs/spec_registry.md` is legacy, non-authoritative, and archived for routing purposes.
+- Any artefact under docs/non_authority/ is non-authoritative by location and MUST NOT be used for decisions unless the user explicitly instructs it.
+- Any artefact under docs/archive/ is archived non-authoritative by location and MUST NOT be used unless the user explicitly instructs it.
+
 
 Rules:
 
 - Agents MUST NOT open, quote, or rely on legacy artefacts unless the user explicitly instructs it.
-- If the user explicitly instructs consultation, legacy may be used as historical context only.
-- Decisions and changes MUST be justified from authoritative artefacts (Class A/B/C). If a decision would depend on legacy, STOP under SS-05.
+- Agents MUST NOT open, quote, or rely on non-authoritative artefacts under docs/non_authority/ or docs/archive/ unless the user explicitly instructs it.
+- If the user explicitly instructs consultation, such artefacts may be used as historical or contextual reference only.
+- Decisions and changes MUST be justified from authoritative artefacts (Class A/B/C). If a decision would depend on legacy or non-authority, STOP under SS-05.
 
 Label mismatch drift gate:
 
@@ -77,7 +88,9 @@ Document classes:
   - `Governing_Docs/Phase_6_Governance_Stability_Policy.md`
   - `docs/spec_registry.md`
 - Non-policy artefacts (operational policy text MUST NOT appear here):
-  - Everything else, explicitly including the change log at its canonical path (e.g. `Governing_Docs/change_log.md`).
+  - Everything else, explicitly including:
+    - `Governing_Docs/change_log.md`
+    - all content under `docs/non_authority/`
 
 Rules:
 
@@ -144,7 +157,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Read-Only Audit Clerk
 
 - Allowed actions: read and inspect artefacts; compile audit reports.
-- Prohibited actions: modifying any file; running commands that change state; network calls; consulting legacy unless explicitly instructed by the user.
+- Prohibited actions: modifying any file; running commands that change state; network calls; consulting legacy or non-authority unless explicitly instructed by the user.
 - Required inputs: the artefacts to be audited and the relevant governance documents.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: SS-04, SS-09, SS-01, SS-08, or any applicable stop-sign.
@@ -152,7 +165,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Change Proposal Clerk
 
 - Allowed actions: generate diff patches for files within the declared phase scope; gather context via read-only inspection; produce verification plans.
-- Prohibited actions: applying changes; writing changes into the repository; editing outside scope; network calls; consulting legacy unless explicitly instructed by the user.
+- Prohibited actions: applying changes; writing changes into the repository; editing outside scope; network calls; consulting legacy or non-authority unless explicitly instructed by the user.
 - Required inputs: the governing feature bundle (if feature work) and the relevant `Governing_Docs/*`.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: SS-05, SS-06, SS-08, or any applicable stop-sign.
@@ -160,7 +173,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Phase Executor Clerk
 
 - Allowed actions: execute tasks within the declared phase scope; create or edit files that belong to that scope; generate verification artefacts as required by governance and feature bundles.
-- Prohibited actions: cross-phase modifications; editing governance artefacts or the spec registry unless explicitly authorised by scope; network calls; consulting legacy unless explicitly instructed by the user; claiming command execution without evidence.
+- Prohibited actions: cross-phase modifications; editing governance artefacts or the spec registry unless explicitly authorised by scope; network calls; consulting legacy or non-authority unless explicitly instructed by the user; claiming command execution without evidence.
 - Required inputs: relevant feature bundle (if feature work) and the relevant `Governing_Docs/*`.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: SS-10, SS-11, SS-12, SS-08, or any applicable stop-sign.
@@ -168,7 +181,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Governance Record Clerk
 
 - Allowed actions: edit governance artefacts (Phase 0–6) as authorised; append entries to `Governing_Docs/change_log.md`; perform minor formatting corrections.
-- Prohibited actions: editing feature bundles, implementation code, or the spec registry (unless explicitly authorised); product work; network calls; consulting legacy unless explicitly instructed by the user.
+- Prohibited actions: editing feature bundles, implementation code, or the spec registry (unless explicitly authorised); product work; network calls; consulting legacy or non-authority unless explicitly instructed by the user.
 - Required inputs: the specific governance artefacts to be updated and authorising instruction.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: SS-08, SS-09, or any applicable stop-sign.
@@ -176,7 +189,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Registry Clerk
 
 - Allowed actions: edit `docs/spec_registry.md` within its non-interpretive rules; append entries to `Governing_Docs/change_log.md`.
-- Prohibited actions: modifying other governance artefacts, feature bundles, or code; network calls; consulting legacy unless explicitly instructed by the user.
+- Prohibited actions: modifying other governance artefacts, feature bundles, or code; network calls; consulting legacy or non-authority unless explicitly instructed by the user.
 - Required inputs: the proposed registry change and the current spec registry.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: SS-09, SS-08, or any applicable stop-sign.
@@ -184,7 +197,7 @@ All roles MUST obey: Phase isolation, stop-sign obedience, hard gates above.
 ### Stack Verification Clerk
 
 - Allowed actions: preflight verification only; confirm presence and uniqueness of canonical artefacts; detect duplicates.
-- Prohibited actions: modifying any files; network calls; consulting legacy unless explicitly instructed by the user.
+- Prohibited actions: modifying any files; network calls; consulting legacy or non-authority unless explicitly instructed by the user.
 - Required inputs: none beyond repository state.
 - Required outputs (Agent Response Contract): MUST satisfy “Response output contract (hard gate)” above.
 - Hard stop conditions: If any required artefact is missing or duplicated, STOP under SS-04 or SS-09.
