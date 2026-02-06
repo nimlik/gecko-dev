@@ -10,15 +10,37 @@ This registry is the routing index for agents operating in Importal’s closed a
 
 Authority routing (binding)
 
-* Foundation Document v4 is constitutional authority.
+## Routing labels (exact intent)
+
+This registry is intended to be interpreted mechanically (no judgement).
+
+Path-prefix routing map:
+
+| path_prefix                | status                                     | intent |
+|---------------------------|---------------------------------------------|--------|
+| docs/features/impl/       | active_authoritative_implementable           | Authoritative (implementable) |
+| docs/features/epics/      | active_authoritative_overview_non_implementable | Authoritative (overview, non-implementable) |
+| docs/adrs/                | active_authoritative_architecture            | Authoritative (architecture) |
+| docs/non_authority/       | non_authoritative_reference                  | Non-authority |
+| docs/archive/legacy/      | legacy_non_authoritative_archived            | Legacy (prohibited unless explicitly overridden by user) |
+
+Implementation source of truth rule (hard):
+
+For implementation tasks, only `docs/features/impl/` and `docs/adrs/` are valid normative inputs.
+
+`docs/features/epics/` may be used for orientation only and MUST never be implemented directly.
+
+Legacy and non-authority paths are prohibited unless the user explicitly overrides.
+
+
+* importal_foundation_document_v5.md is the sole constitutional authority.
 * Phase 0–6 governance artefacts are binding governance authority.
 * Stage 4 agent-operation artefacts (AGENTS.md, activation rules, agent system prompts, this registry) are policy-only and must not be treated as product behaviour specs.
 * All non-authoritative artefacts must live under exactly one of:
   - docs/non_authority/ (active work products / scratch / working notes)
   - docs/archive/ (superseded / legacy / preserved historical copies)
 
-Both non-authority folders are refuse-by-default unless explicitly requested.
-
+Legacy and non_authority paths are prohibited unless the user explicitly overrides.
 
 Deterministic path rule
 
@@ -49,7 +71,9 @@ These are the minimum canonical artefacts required for agent operation and gover
 | Governing_Docs/Phase_5_Spec_Classification_Mapping.md              | active_authoritative_governance   | Phase 5                                    |
 | Governing_Docs/Phase_6_Governance_Stability_Policy.md              | active_authoritative_governance   | Phase 6                                    |
 | Governing_Docs/change_log.md                                       | active_authoritative_audit_record | Audit log only (non-policy content)        |
-| docs/Importal Foundation Document v4.md                            | active_authoritative_constitution | Constitutional product authority |
+| docs/importal_foundation_document_v5.md                            | active_authoritative_constitution | Constitutional product authority |
+| docs/archive/legacy/foundation/Importal Foundation Document v4.md   | archived_non_authoritative         | Superseded constitutional document (see v5) |
+
 ---
 
 Section B — Feature bundles (Class C, authoritative within scope)
@@ -68,10 +92,13 @@ Section C — Non-authoritative locations (routing only)
 
 These are non-authoritative by location and must not be used for decisions unless explicitly instructed.
 
-| location            | status                     | intended use                                 |
-| ------------------- | -------------------------- | -------------------------------------------- |
-| docs/non_authority/ | non_authoritative          | Active work products, scratch, working notes |
-| docs/archive/       | non_authoritative_archived | Superseded or preserved historical copies    |
+| location              | status                                           | intended use |
+|----------------------|--------------------------------------------------|--------------|
+| docs/features/impl/  | active_authoritative_implementable               | Implementable feature specifications |
+| docs/features/epics/ | active_authoritative_overview_non_implementable  | Orientation only (must never be implemented directly) |
+| docs/adrs/           | active_authoritative_architecture                | Architecture decisions and rationale |
+| docs/non_authority/  | non_authoritative_reference                      | Active work products, scratch, working notes |
+| docs/archive/legacy/ | legacy_non_authoritative_archived                | Archived legacy material (prohibited unless explicitly overridden by user) |
 
 ---
 
