@@ -1,4 +1,4 @@
-# AGENTS.md
+# agents.md
 
 Closed authority system. Agents MUST load `docs/agent_activation_rules.md` before any work.
 
@@ -10,7 +10,7 @@ Duplicate scanning applies to files within the repository working tree only (rep
 
 If more than one candidate exists within the repo for any canonical artefact (duplicate/near-duplicate), STOP under SS-09.
 
-- `AGENTS.md`
+- `agents.md`
 - `docs/agent_activation_rules.md`
 - `docs/agent_prompts/agent_system_prompt__bootstrap.md`
 - `docs/agent_prompts/agent_system_prompt__read_only_audit_clerk.md`
@@ -27,12 +27,10 @@ If more than one candidate exists within the repo for any canonical artefact (du
 - `Governing_Docs/Phase_5_Spec_Classification_Mapping.md`
 - `Governing_Docs/Phase_6_Governance_Stability_Policy.md`
 - `Governing_Docs/change_log.md`
-- Foundation Document v4 canonical path MUST be registered in `docs/spec_registry.md`. If Section 6 indicates indexed absence or ambiguity, STOP under SS-04/SS-09.
-
+- `docs/importal_foundation_document_v5.md` canonical path MUST be registered in docs/spec_registry.md. If the registry indicates absence or ambiguity, STOP under SS-04/SS-09.
 ## Authority routing (binding)
 
-- `Governing_Docs/` Phase 0–6 and the Foundation Document outrank everything.
-- Stage 4 documents (this file, activation rules, and system prompts) govern agent operation only. They MUST NOT be treated as product behaviour specs.
+Governing_Docs/Phase_0–Governing_Docs/Phase_6 artefacts and docs/importal_foundation_document_v5.md are the highest-order authorities and outrank all other artefacts.- Stage 4 documents (this file, activation rules, and system prompts) govern agent operation only. They MUST NOT be treated as product behaviour specs.
 - Any corpus labelled `legacy_non_authoritative_archived` in `docs/spec_registry.md` is non-authoritative. Agents MUST NOT open, quote, or rely on it unless the user explicitly instructs. If instructed, treat as historical context only; decisions MUST be justified from Class A/B/C artefacts, otherwise STOP under SS-05.
 - If `docs/spec_registry.md` does not contain the exact legacy label token `legacy_non_authoritative_archived`, STOP under SS-09 (treat as drift/ambiguity).
 
