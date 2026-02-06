@@ -79,7 +79,7 @@ Agents MUST NOT:
 \* Reinterpret “intent” where text is explicit
 
 \---
-
+ 
 **\#\# 3\. Conflict Resolution Protocol (Mandatory)**
 
 On detecting conflict or ambiguity between authorities, agents MUST halt and produce a \*\*Conflict Report\*\* containing:
