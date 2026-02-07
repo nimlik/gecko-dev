@@ -35,7 +35,7 @@ Legacy and non-authority paths are prohibited unless the user explicitly overrid
 
 * importal_foundation_document_v5.md is the sole constitutional authority.
 * Phase 0–6 governance artefacts are binding governance authority.
-* Stage 4 agent-operation artefacts (AGENTS.md, activation rules, agent system prompts, this registry) are policy-only and must not be treated as product behaviour specs.
+* Stage 4 agent-operation artefacts (agents.md, activation rules, agent system prompts, this registry) are policy-only and must not be treated as product behaviour specs.
 * All non-authoritative artefacts must live under exactly one of:
   - docs/non_authority/ (active work products / scratch / working notes)
   - docs/archive/ (superseded / legacy / preserved historical copies)
@@ -54,7 +54,7 @@ These are the minimum canonical artefacts required for agent operation and gover
 
 | canonical_path                                                     | status                            | notes                                      |
 | ------------------------------------------------------------------ | --------------------------------- | ------------------------------------------ |
-| AGENTS.md                                                          | active_authoritative_policy       | Agent boundary and canonical artefact list |
+| agents.md                                                          | active_authoritative_policy       | Agent boundary and canonical artefact list |
 | docs/agent_activation_rules.md                                     | active_authoritative_policy       | Hard gates, stop semantics, role taxonomy  |
 | docs/agent_prompts/agent_system_prompt__bootstrap.md               | active_authoritative_policy       | Agent bootstrap posture                    |
 | docs/agent_prompts/agent_system_prompt__read_only_audit_clerk.md   | active_authoritative_policy       | Read-Only Audit Clerk prompt               |

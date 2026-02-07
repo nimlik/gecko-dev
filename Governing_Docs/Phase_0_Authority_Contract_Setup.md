@@ -9,7 +9,7 @@ This document defines who may decide, what constitutes an authorised change, and
 
 This update reflects the current operating reality:
 
-- The Foundation Document is constitutional product authority (cold reference), not operational context.
+- The docs/importal_foundation_document_v5.md is constitutional product authority (cold reference), not operational context.
 - Day-to-day engineering is driven by feature-first specifications designed for rapid, low-inference iteration.
 
 ## 1. Authority hierarchy (normative)
@@ -17,7 +17,7 @@ This update reflects the current operating reality:
 Authority is layered. Agents must never reconcile conflicts implicitly.
 
 1. Phase 0: Authority Lock and Operating Contract (this document) for governance, enforcement, and operating mechanics.
-2. Foundation Document v4 for product intent, non-goals, and constitutional product semantics.
+2. docs/importal_foundation_document_v5.md for product intent, non-goals, and constitutional product semantics.
 3. Phase governance artefacts (Phases 1–6) for constraints, stop-signs, sequencing, naming enforcement, classification, and drift control.
 4. Feature specifications (Feature bundles) for implementable behaviour, acceptance criteria, and verification steps.
 5. Implementation notes and code reality (non-authoritative unless explicitly elevated by an authority decision recorded in change_log.md).
@@ -25,7 +25,7 @@ Authority is layered. Agents must never reconcile conflicts implicitly.
 Conflict rule:
 
 - If governance mechanics conflict: Phase 0 prevails.
-- If product semantics conflict: Foundation v4 prevails.
+- If product semantics conflict: importal_foundation_document_v5.md prevails.
 - If a lower-tier artefact conflicts with a higher-tier artefact: the lower-tier artefact is invalid until corrected.
 
 ## 2. Operating posture for coding agents (normative)
@@ -38,7 +38,7 @@ Default working set for an implementation task:
 - The Global Stop-Sign Index.
 - The Immutable Constraints set.
 
-Agents must not ingest the entire Foundation Document for routine tasks unless:
+Agents must not ingest the entire importal_foundation_document_v5.md for routine tasks unless:
 
 - the feature spec is ambiguous or incomplete, or
 - a conflict is detected, or
@@ -52,7 +52,7 @@ Agents may:
 
 Agents must not:
 
-- edit the Foundation Document without explicit authority to do so.
+- edit the importal_foundation_document_v5.md without explicit authority to do so.
 - create or redefine product intent.
 - “upgrade” any document’s authority tier.
 - rename or relocate canonical artefacts unless instructed by an authorised human decision.

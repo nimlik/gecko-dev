@@ -12,12 +12,12 @@ This artefact classifies each specification document and defines:
 - what it must not be used for
 - how it maps to implementation work
 
-Update intent: introduce a first-class “feature bundle” layer and reduce dependence on the Foundation Document for routine tasks.
+Update intent: introduce a first-class “feature bundle” layer and reduce dependence on the docs/importal_foundation_document_v5.md for routine tasks.
 
 ## 1. Spec classes (normative)
 
 Class A: Constitutional product authority
-- Foundation Document v4
+- docs/importal_foundation_document_v5.md
 Use: product intent, philosophy, non-goals, constitutional semantics.
 Do not use: as an implementation spec.
 
@@ -47,7 +47,7 @@ For feature implementation tasks, the canonical working set is:
 
 Consult Phase 0, Phase 3, Phase 5, Phase 6 when required by ambiguity, conflict, or change-control.
 
-Foundation Document consult rule:
+docs/importal_foundation_document_v5.md consult rule:
 
 - consult only when needed to resolve ambiguity or validate non-goals
 - do not ingest for routine tasks
@@ -57,7 +57,7 @@ Foundation Document consult rule:
 This document must contain and maintain a registry of:
 
 - each governance artefact (Phase 0–6) and its canonical filename
-- the Foundation Document canonical filename
+- the docs/importal_foundation_document_v5.md canonical filename
 - each feature bundle identifier and path (lightweight index)
 
 If registry information is missing or stale, stop under SS-04 or SS-09.

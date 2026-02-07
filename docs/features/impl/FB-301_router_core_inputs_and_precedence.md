@@ -6,14 +6,14 @@ parent_epic:
 depends_on_adrs:
 - docs/adrs/ADR-0001_routing_defaults_and_constraints.md
 authority_dependencies:
-- Foundation v5: 6.1 windowType Semantics; 6.2 Main Window Behaviour; 6.3 Taskspace Behaviour
+- docs/importal_foundation_document_v5.md: 6.1 windowType Semantics; 6.2 Main Window Behaviour; 6.3 Taskspace Behaviour
 - Governing_Docs: Phase_2_Global_Stop_Sign_Index.md; Phase_1_Immutable_Constraints_Extraction.md; Phase_4_Glossary_and_Naming_Enforcement.md
 
 # FB-301 — Router Core Inputs and Precedence (Non-omnibar, Non-external)
 
 ## 1. authority_dependencies
 
-Constitutional (Foundation v5)
+Constitutional (docs/importal_foundation_document_v5.md)
 - 6.1 windowType Semantics (main/taskspace/aux; windowType is a first-class behavioural boundary)
 - 6.2 Main Window Behaviour (Main constrained; non-matching URLs MUST open in a new Taskspace; external links from Main MUST open in a new Taskspace)
 - 6.3 Taskspace Behaviour (Taskspaces created only by explicit user action; routing within a Taskspace remains scoped to that Taskspace)
@@ -27,7 +27,7 @@ Architecture (ADR)
 Governance (Governing_Docs)
 - Phase_2_Global_Stop_Sign_Index.md (stop-sign identifiers referenced in this FB; see section 13)
 - Phase_1_Immutable_Constraints_Extraction.md (IC mapping concept; see section 12 and REQUIRED_AUTHORITY_INPUT)
-- Phase_4_Glossary_and_Naming_Enforcement.md (avoid redefining core terms; use Foundation as the pointer for windowType semantics)
+- Phase_4_Glossary_and_Naming_Enforcement.md (avoid redefining core terms; use docs/importal_foundation_document_v5.md as the pointer for windowType semantics)
 
 ## 2. scope
 
@@ -59,7 +59,7 @@ Out of scope (delegated to other FBs)
 
 ## 5. definitions
 
-- windowType: main | taskspace | aux (canonical semantics and behavioural constraints defined by Foundation v5).
+- windowType: main | taskspace | aux (canonical semantics and behavioural constraints defined by docs/importal_foundation_document_v5.md).
 - source_surface: main | taskspace (derived from current windowType at the time of trigger evaluation; aux is not a valid routing source for this FB’s triggers).
 - target_url: the fully qualified URL being navigated to or opened.
 - target_origin: mechanical parse of target_url’s origin, used only for exact-match comparisons.
@@ -88,7 +88,7 @@ FR-301-04 Trigger: app_toolbar_select(entry_id) when source_surface == main
 - The router MUST consult app_identity_table[app_id].default_destination_from_main to determine destination:
   - main: show launch_url in Main
   - new_taskspace: open a new Taskspace with launch_url in a new tab
-- Showing content in Main via this route MUST remain consistent with Foundation v5 Main constraints (Main renders only content that matches toolbar entry identity/origin matching as defined by routing policy tables).
+- Showing content in Main via this route MUST remain consistent with docs/importal_foundation_document_v5.md Main constraints (Main renders only content that matches toolbar entry identity/origin matching as defined by routing policy tables).
 
 FR-301-05 Trigger: click_link(target_url) when source_surface == taskspace
 - Default behaviour MUST be in-tab navigation within the current Taskspace.
@@ -189,10 +189,13 @@ none
 
 ## 13. stop_sign_triggers (SS-xx identifiers only)
 
-- SS-01
-- SS-02
-- SS-03
-- SS-05
+- SS-01 Semantic ambiguity: Applies if any seed entry’s meaning is unclear (e.g., ambiguous default_destination_from_main) such that implementing it would require guessing.
+
+- SS-02 Authority conflict: Applies if any seed entry or dataset structure conflicts with FB-321 schema constraints or ADR-0001 constraints.
+
+- SS-03 Missing immutable constraint mapping: applies if implementing omnibar submit routing touches an immutable constraint area but the required mapping/anchors are absent or unclear.
+
+- SS-05 Inference required: Applies if completing the seed datasets would require inferring missing entries, fields, or values not explicitly provided.
 
 ## 14. rollout_and_rollback
 

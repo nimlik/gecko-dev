@@ -17,11 +17,24 @@ Draft. Architectural decision record (orientation-only). Not directly implementa
 
 ## 2. decision
 
-Adopt deterministic routing with explicit routing inputs and precedence, with no inference: default to staying within the current windowType and current taskspace unless an explicit rule requires escalation (e.g., main non-matching content opens in a new taskspace).
+Adopt deterministic routing with explicit routing inputs and precedence, with no inference: default to staying within the current `windowType` and current taskspace unless an explicit rule requires escalation (e.g., main non-matching content opens in a new taskspace).
 
 ## 3. context
 
-Importal v0.1 treats windowType as a first-class behavioural boundary. Routing must be deterministic, testable, and must not infer user intent. Ambiguity must trigger STOP rather than heuristic behaviour. Routing also must honour locked Foundation rules for main/taskspace/aux behaviour, including main-to-taskspace escalation for non-matching content and restricted aux usage.
+Importal v0.1 treats `windowType` as a first-class behavioural boundary (docs/importal_foundation_document_v5.md, section 6.1). Routing must be deterministic, testable, and must not infer user intent; ambiguity must trigger STOP rather than heuristic behaviour (docs/importal_foundation_document_v5.md, sections 2–3). Routing must honour locked Main/Taskspace/Aux behavioural contracts, including Main-to-Taskspace escalation for non-matching content and restricted Aux usage (docs/importal_foundation_document_v5.md, sections 6.2–6.4).
+
+### 3.1 authority basis (Foundation v5 anchors)
+
+This ADR is a constraints map only. It does not define implementable routing tables, allowlists, UI behaviour, or per-surface routing rules; those belong in implementable feature bundles.
+
+Binding authority sources (docs/importal_foundation_document_v5.md, locked sections):
+
+1. Sections 2–4 and 10: agent operating rules, conflict resolution, and execution gating (no assumptions; stop on ambiguity or conflict; artefact-gated progression; stop-sign enforcement).
+2. Section 6.1–6.4: windowType semantics and behavioural contracts (main/taskspace/aux boundaries; Main non-matching content escalation to a new Taskspace; Taskspaces created only by explicit user action; Taskspace routing remains scoped; Aux limitations).
+3. Section 7: omnibar behaviour (history-blind dropdown by default; explicit mode selection; mode-specific routing constraints).
+4. Section 8: history truthfulness and retention (append-only, lossless; no pruning/rewriting; Places augmentation; no parallel History store; Aux excluded from retention guarantees).
+
+If any statement in this ADR conflicts with the above clauses, the docs/importal_foundation_document_v5.md clause prevails and this ADR MUST be corrected.
 
 ## 4. options
 
@@ -31,11 +44,11 @@ Importal v0.1 treats windowType as a first-class behavioural boundary. Routing m
 
 ## 5. rationale
 
-Option 2 is the only option that satisfies: (a) “no inference” constraints, (b) windowType boundary enforcement, and (c) a mechanically testable routing test matrix. Heuristic routing increases ambiguity and drift risk, and “always taskspace” undermines the main surface contract and toolbar gating.
+Option 2 is the only option that satisfies: (a) “no inference” constraints, (b) `windowType` boundary enforcement, and (c) a mechanically testable routing test matrix. Heuristic routing increases ambiguity and drift risk, and “always taskspace” undermines the main surface contract and toolbar gating.
 
 ## 6. consequences
 
-1. Routing decisions may consider only explicit inputs (user gesture/disposition, current windowType, current taskspace, target URL, explicit policy rules); they must not use history-derived inference unless explicitly authorised by an implementable FB.
+1. Routing decisions may consider only explicit inputs (user gesture/disposition, current `windowType`, current taskspace, target URL, explicit policy rules); they must not use history-derived inference unless explicitly authorised by an implementable FB.
 
 2. When destination is ambiguous, routing must either follow the defined default precedence or STOP (per the stop-sign model), rather than guess.
 
@@ -57,7 +70,7 @@ This ADR establishes a project-wide default constraint for routing logic:
 ## 8. precedence and defaults (normative summary)
 
 1. Default stance:
-   - Stay within the current windowType and (if in a Taskspace) within the current Taskspace.
+   - Stay within the current `windowType` and (if in a Taskspace) within the current Taskspace.
 
 2. Explicit escalation:
    - Escalation (for example, opening a new Taskspace) must be triggered only by an explicit rule owned by an implementable FB and consistent with higher-tier authority (not by heuristic inference).
@@ -67,10 +80,15 @@ This ADR establishes a project-wide default constraint for routing logic:
 
 ## 9. ambiguity handling and STOP discipline
 
-If an implementable spec cannot produce a deterministic outcome from explicitly declared inputs (or if authority conflicts exist), implementation and drafting must STOP and request REQUIRED_AUTHORITY_INPUT rather than introduce heuristics.
+If an implementable spec cannot produce a deterministic outcome from explicitly declared inputs, implementation and drafting MUST STOP rather than introduce heuristics.
 
-This ADR delegates stop-sign identifier definitions to:
-- Governing_Docs/Phase_2_Global_Stop_Sign_Index.md
+Stop-sign mapping (see Governing_Docs/Phase_2_Global_Stop_Sign_Index.md):
+
+ - SS-01 Semantic ambiguity: a required term, requirement, or acceptance criterion is undefined or ambiguous.
+ - SS-02 Authority conflict: two authoritative artefacts conflict for the same routing decision surface.
+ - SS-05 Inference-required implementation: completing the task would require inventing behaviour, requirements, or intent not explicitly specified by authoritative inputs.
+
+When STOP is invoked, request REQUIRED_AUTHORITY_INPUT with the minimum clarifying questions needed to restore determinism.
 
 ## 10. verification expectation (routing test matrix)
 
@@ -78,7 +96,7 @@ Implementable routing specs that depend on this ADR must be verifiable via a det
 
 1. Each routing trigger and rule branch enumerated
 2. Inputs listed and held constant per test case
-3. Expected routing outcome stated (destination windowType and any disposition rule where specified)
+3. Expected routing outcome stated (destination `windowType` and any disposition rule where specified)
 4. “No inference” stability demonstrated by repeating cases under different history states (where relevant)
 
 ## 11. implementation references (non-normative pointers)
@@ -93,4 +111,4 @@ Implementable feature bundles that operationalise this ADR (not exhaustive beyon
 
 ## 12. change control
 
-Updates to routing defaults, allowed inputs, or precedence ordering must be made by updating this ADR (and recording change control per Governing_Docs), not by silently drifting implementable FBs.
+Updates to routing defaults, allowed inputs, or precedence ordering MUST be made by updating this ADR, and recorded per Governing_Docs/Phase_6_Governance_Stability_Policy.md and Governing_Docs/change_log.md. Implementable FBs MUST NOT silently drift routing precedence or allowed-input rules.

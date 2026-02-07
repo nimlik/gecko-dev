@@ -8,10 +8,10 @@ parent_epic:
 - docs/features/epics/EFB-003_navigation_routing_policy.md
 
 depends_on_adrs:
-- docs/adrs/ADR-0001_Routing_Defaults_and_Constraints.md
+- docs/adrs/ADR-0001_routing_defaults_and_constraints.md
 
 authority_dependencies:
-- Foundation v5:
+- docs/importal_foundation_document_v5.md:
   - 5. Network Posture and Telemetry Discipline (v0.1)
   - 6.2 Main Window Behaviour
   - 6.3 Taskspace Behaviour
@@ -32,9 +32,9 @@ Schema conformance is governed by FB-321. Architectural constraints are governed
 
 This FB defines v0.1 seed datasets (records and their exact field values) for:
 
-* toolbar_entry_table
-* app_identity_table
-* task_worthy_target_allowlist
+- toolbar_entry_table
+- app_identity_table
+- task_worthy_target_allowlist
 
 Provenance (non-normative)
 
@@ -42,21 +42,21 @@ EFB-003 no longer embeds seed YAML (Appendices C/D/E are “moved” stubs) to p
 
 ## 3. non_goals
 
-* Not defining routing precedence or routing algorithms (see ADR-0001 and EFB-003 orientation).
-* Not changing, extending, or improving the seed datasets.
-* Not introducing new seed records, new keys, or inferred values.
-* Not editing schemas (FB-321) or architecture (ADR-0001).
-* Not defining physical file layout for persisted configuration.
+- Not defining routing precedence or routing algorithms (see ADR-0001 and EFB-003 orientation).
+- Not changing, extending, or improving the seed datasets.
+- Not introducing new seed records, new keys, or inferred values.
+- Not editing schemas (FB-321) or architecture (ADR-0001).
+- Not defining physical file layout for persisted configuration.
 
 ## 4. definitions
 
-* table: a logical routing policy dataset (toolbar_entry_table, app_identity_table, task_worthy_target_allowlist).
-* record: one entry in a table.
-* app_id: stable identifier for an application identity record (app_identity_table.app_id).
-* entry_id: stable identifier for a toolbar pin record (toolbar_entry_table.entry_id).
-* rule_id: stable identifier for an allowlist rule record (task_worthy_target_allowlist.rule_id).
-* origin: scheme://host[:port] with no path, query, or fragment (per FB-321).
-* strict mode: configuration load fails closed; any invalid or inconsistent data triggers STOP (per FB-321).
+- table: a logical routing policy dataset (toolbar_entry_table, app_identity_table, task_worthy_target_allowlist).
+- record: one entry in a table.
+- app_id: stable identifier for an application identity record (app_identity_table.app_id).
+- entry_id: stable identifier for a toolbar pin record (toolbar_entry_table.entry_id).
+- rule_id: stable identifier for an allowlist rule record (task_worthy_target_allowlist.rule_id).
+- origin: scheme://host[:port] with no path, query, or fragment (per FB-321).
+- strict mode: configuration load fails closed; any invalid or inconsistent data triggers STOP (per FB-321).
 
 ## 5. dataset_overview
 
@@ -64,13 +64,13 @@ Source of truth: FB-322 (this document).
 
 Record counts (v0.1):
 
-* toolbar_entry_table: 15 records
-* app_identity_table: 15 records
-* task_worthy_target_allowlist: 9 records
+- toolbar_entry_table: 15 records
+- app_identity_table: 15 records
+- task_worthy_target_allowlist: 9 records
 
 Notes:
 
-* This FB packages the seed datasets as a single container YAML with `schema_version: "0.1"`, per FB-321.
+- This FB packages the seed datasets as a single container YAML with `schema_version: "0.1"`, per FB-321.
 
 ## 6. seed_data
 
@@ -333,33 +333,33 @@ All rules below are constraints on using this seed data in implementation and te
 
 Schema validity (FB-321)
 
-* All records MUST validate against FB-321 v0.1 schemas and validators for their table.
-* Unknown fields MUST trigger STOP in strict mode (FB-321).
-* Enum fields MUST use only permitted values (FB-321).
+- All records MUST validate against FB-321 v0.1 schemas and validators for their table.
+- Unknown fields MUST trigger STOP in strict mode (FB-321).
+- Enum fields MUST use only permitted values (FB-321).
 
 No wildcard origins (FB-321)
 
-* app_identity_table.canonical_origins MUST contain exact origins only and MUST NOT include wildcard/pattern syntax.
-* app_identity_table.within_app_origin_allowlist MUST contain exact origins only and MUST NOT include wildcard/pattern syntax.
-* Origins MUST NOT include any path, query, or fragment.
+- app_identity_table.canonical_origins MUST contain exact origins only and MUST NOT include wildcard/pattern syntax.
+- app_identity_table.within_app_origin_allowlist MUST contain exact origins only and MUST NOT include wildcard/pattern syntax.
+- Origins MUST NOT include any path, query, or fragment.
 
 Uniqueness (FB-321)
 
-* toolbar_entry_table.entry_id MUST be unique.
-* app_identity_table.app_id MUST be unique.
-* task_worthy_target_allowlist.rule_id MUST be unique.
+- toolbar_entry_table.entry_id MUST be unique.
+- app_identity_table.app_id MUST be unique.
+- task_worthy_target_allowlist.rule_id MUST be unique.
 
 Referential integrity (FB-321)
 
-* In strict mode: every toolbar_entry_table.app_id MUST reference an existing app_identity_table.app_id; otherwise STOP.
+- In strict mode: every toolbar_entry_table.app_id MUST reference an existing app_identity_table.app_id; otherwise STOP.
 
 Strict-mode failure behaviour (FB-321)
 
-* Any schema violation, uniqueness failure, or referential integrity failure MUST trigger STOP at load-time in strict mode with precise error reporting (table name, record identifier, field, rule violated).
+- Any schema violation, uniqueness failure, or referential integrity failure MUST trigger STOP at load-time in strict mode with precise error reporting (table name, record identifier, field, rule violated).
 
 Packaging note (non-normative; constraint reminder)
 
-* FB-321 requires schema_version on persisted routing policy datasets. This FB includes `schema_version: "0.1"` and packages all v0.1 seed tables in a single container YAML.
+- FB-321 requires schema_version on persisted routing policy datasets. This FB includes `schema_version: "0.1"` and packages all v0.1 seed tables in a single container YAML.
 
 ## 8. acceptance_criteria
 
@@ -388,48 +388,48 @@ AC-322-06 Uniqueness
 
 Step 1: Source alignment (diff-based)
 
-* Canonical seed baseline: docs/archive/legacy/seed_baselines/epic3_routing_tables_seed_baseline_v0_1.md (reference only; non-authority)
-* Compare each table’s YAML against the corresponding YAML in this FB:
-  * toolbar_entry_table comparison
-  * app_identity_table comparison
-  * task_worthy_target_allowlist comparison
-* Verification passes only if the comparison shows no differences in keys, values, record ordering, or comments contained within the YAML.
+- Canonical seed baseline: docs/archive/legacy/seed_baselines/epic3_routing_tables_seed_baseline_v0_1.md (reference only; non-authority)
+- Compare each table’s YAML against the corresponding YAML in this FB:
+  - toolbar_entry_table comparison
+  - app_identity_table comparison
+  - task_worthy_target_allowlist comparison
+- Verification passes only if the comparison shows no differences in keys, values, record ordering, or comments contained within the YAML.
 
 Step 2: Schema validation against FB-321 (describe checks; no code required here)
 
-* Validate each table against FB-321 v0.1:
+- Validate each table against FB-321 v0.1:
 
-  * Required fields present and non-empty for each record.
-  * Field types and enums valid.
-  * Origins meet the origin validator and do not trigger the wildcard/pattern detector.
-  * URL fields are absolute URLs.
+  - Required fields present and non-empty for each record.
+  - Field types and enums valid.
+  - Origins meet the origin validator and do not trigger the wildcard/pattern detector.
+  - URL fields are absolute URLs.
 
 Step 3: Uniqueness checks
 
-* Confirm that:
+- Confirm that:
 
-  * entry_id values are all unique in toolbar_entry_table.
-  * app_id values are all unique in app_identity_table.
-  * rule_id values are all unique in task_worthy_target_allowlist.
+  - entry_id values are all unique in toolbar_entry_table.
+  - app_id values are all unique in app_identity_table.
+  - rule_id values are all unique in task_worthy_target_allowlist.
 
 Step 4: Referential integrity (if validating in strict mode per FB-321)
 
-* For each toolbar_entry_table record, confirm app_id exists in app_identity_table.app_id.
+- For each toolbar_entry_table record, confirm app_id exists in app_identity_table.app_id.
 
 Step 5: Strict-mode failure reporting (spot-check)
 
-* Confirm that the validator’s failure output (when a fault is introduced in a test copy) identifies:
+- Confirm that the validator’s failure output (when a fault is introduced in a test copy) identifies:
 
-  * table name
-  * record identifier (entry_id/app_id/rule_id)
-  * field name (or unknown field path)
-  * violated rule reference (FB-321 constraint)
+  - table name
+  - record identifier (entry_id/app_id/rule_id)
+  - field name (or unknown field path)
+  - violated rule reference (FB-321 constraint)
 
 Record count guardrails (anti-transcription-loss)
 
-* Confirm toolbar_entry_table record count = 15
-* Confirm app_identity_table record count = 15
-* Confirm task_worthy_target_allowlist record count = 9
+- Confirm toolbar_entry_table record count = 15
+- Confirm app_identity_table record count = 15
+- Confirm task_worthy_target_allowlist record count = 9
 
 ## 10. invariants_touched (IC-x identifiers only; TBD if unverified)
 
@@ -439,55 +439,39 @@ TBD
 
 stop_sign_triggers
 
-SS-01 Semantic ambiguity
+- SS-01 Semantic ambiguity: Applies if any seed entry’s meaning is unclear (e.g., ambiguous default_destination_from_main) such that implementing it would require guessing.
 
-* Applies if any seed entry’s meaning is unclear (e.g., ambiguous default_destination_from_main) such that implementing it would require guessing.
+- SS-02 Authority conflict: Applies if any seed entry or dataset structure conflicts with FB-321 schema constraints or ADR-0001 constraints.
 
-SS-02 Authority conflict
+- SS-04 Missing artefact: Applies if required authoritative inputs are missing (e.g., seed source text is unavailable, or FB-321 is not available to validate against).
 
-* Applies if any seed entry or dataset structure conflicts with FB-321 schema constraints or ADR-0001 constraints.
+- SS-05 Inference required: Applies if completing the seed datasets would require inferring missing entries, fields, or values not explicitly provided.
 
-SS-04 Missing artefact
+- SS-07 Verification ambiguity: Applies if acceptance criteria or verification steps cannot be executed deterministically (e.g., no record counts, no diffable source, or validation rules are underspecified).
 
-* Applies if required authoritative inputs are missing (e.g., seed source text is unavailable, or FB-321 is not available to validate against).
+- SS-09 Drift signal: Applies if there is evidence of transcription loss or mismatch across documents (e.g., record counts differ between versions, or fields differ unexpectedly).
 
-SS-05 Inference required
+- SS-11 Non-binary acceptance criteria: Applies if any acceptance criterion is not objectively testable (must be rewritten to be binary).
 
-* Applies if completing the seed datasets would require inferring missing entries, fields, or values not explicitly provided.
-
-SS-07 Verification ambiguity
-
-* Applies if acceptance criteria or verification steps cannot be executed deterministically (e.g., no record counts, no diffable source, or validation rules are underspecified).
-
-SS-09 Drift signal
-
-* Applies if there is evidence of transcription loss or mismatch across documents (e.g., record counts differ between versions, or fields differ unexpectedly).
-
-SS-11 Non-binary acceptance criteria
-
-* Applies if any acceptance criterion is not objectively testable (must be rewritten to be binary).
-
-SS-12 Conflicting acceptance criteria
-
-* Applies if acceptance criteria conflict with each other or with authority requirements (must STOP and resolve).
+- SS-12 Conflicting acceptance criteria: Applies if acceptance criteria conflict with each other or with authority requirements (must STOP and resolve).
 
 ## 12. rollout_and_rollback
 
 Rollout (v0.1)
 
-* Introduce FB-322 alongside FB-321.
-* Validate the seed datasets against FB-321 in strict mode before any routing implementation consumes them.
-* Use these seeds as the baseline test fixture set for routing-table loading and validation.
+- Introduce FB-322 alongside FB-321.
+- Validate the seed datasets against FB-321 in strict mode before any routing implementation consumes them.
+- Use these seeds as the baseline test fixture set for routing-table loading and validation.
 
 Rollback
 
-* If a change to seed datasets causes validation failure or behavioural regression:
+- If a change to seed datasets causes validation failure or behavioural regression:
 
-  * revert FB-322 to the previous known-valid version that matches the then-current FB-321.
-  * do not hotfix individual records without corresponding change control and verification.
+  - revert FB-322 to the previous known-valid version that matches the then-current FB-321.
+  - do not hotfix individual records without corresponding change control and verification.
 
 ## 13. change_log_entry_required
 
 Required:
 
-* Adding FB-322 or materially modifying its seed datasets MUST include an entry in Governing_Docs/change_log.md consistent with Phase 6 (what changed, where, why, verification impact).
+- Adding FB-322 or materially modifying its seed datasets MUST include an entry in Governing_Docs/change_log.md consistent with Phase 6 (what changed, where, why, verification impact).

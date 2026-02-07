@@ -7,7 +7,7 @@ Last updated: 2026-01-28
 
 This artefact defines when work may proceed and what sequencing discipline applies.
 
-Update intent: reflect that implementation work is now driven by feature bundles, not by repeated ingestion of the Foundation Document.
+Update intent: reflect that implementation work is now driven by feature bundles, not by repeated ingestion of the docs/importal_foundation_document_v5.md.
 
 ## 1. Core rule (normative)
 
@@ -59,11 +59,11 @@ A feature bundle is considered “ready” only if it includes:
 
 If any element is missing or ambiguous, stop under SS-10 or SS-11.
 
-## 4. Foundation Document usage rule (normative)
+## 4. docs/importal_foundation_document_v5.md usage rule (normative)
 
-The Foundation Document is constitutional reference only.
+The docs/importal_foundation_document_v5.md is constitutional reference only.
 
-Agents must not treat the Foundation as an implementation spec.
+Agents must not treat the docs/importal_foundation_document_v5.md as an implementation spec.
 
 Permitted uses:
 

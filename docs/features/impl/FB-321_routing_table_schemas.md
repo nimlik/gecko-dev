@@ -11,7 +11,7 @@ depends_on_adrs:
 - docs/adrs/ADR-0001_routing_defaults_and_constraints.md
 
 authority_dependencies:
-- Foundation v5:
+- docs/importal_foundation_document_v5.md:
   - 5. Network Posture and Telemetry Discipline (v0.1)
   - 6.2 Main Window Behaviour
   - 6.3 Taskspace Behaviour
@@ -31,7 +31,7 @@ authority_dependencies:
 This FB is implementable and is the schema source-of-truth for the routing policy tables referenced by EFB-003.
 
 Binding sources:
-- Foundation v5: windowType boundary constraints; Main/Taskspace surface contracts; network/telemetry constraints.
+- docs/importal_foundation_document_v5.md: windowType boundary constraints; Main/Taskspace surface contracts; network/telemetry constraints.
 - ADR-0001: deterministic routing with explicit inputs; STOP on ambiguity rather than inference.
 - EFB-003 Appendix A: authoritative table names and required fields for v0.1 (orientation); this FB formalises them into implementable schema and validation rules.
 - EFB-003 Appendix F: strict vs lenient mode concept for configuration handling.
@@ -288,7 +288,7 @@ NFR-321-01 (Determinism; no inference)
 
 NFR-321-02 (Privacy and data handling)
 - Routing policy tables are local configuration. They MUST NOT be transmitted off-device.
-- Loading/validation MUST not introduce any non-user-initiated network traffic (Foundation v5 section 5).
+- Loading/validation MUST not introduce any non-user-initiated network traffic (docs/importal_foundation_document_v5.md, section 5).
 
 NFR-321-03 (Fail closed in strict mode)
 - In strict mode, validation failures MUST fail closed via STOP before routing uses the data.
@@ -412,7 +412,28 @@ TBD
 
 ## 13. stop_sign_triggers (SS-xx identifiers only; TBD if unverified)
 
-TBD (populate only by referencing the canonical identifiers in Governing_Docs/Phase_2_Global_Stop_Sign_Index.md; do not invent IDs)
+## 13. stop_sign_triggers (SS-xx identifiers only; TBD if unverified)
+
+Stop-sign mapping (see Governing_Docs/Phase_2_Global_Stop_Sign_Index.md):
+
+- SS-01 Semantic ambiguity: Applies if any seed entry’s meaning is unclear (e.g., ambiguous default_destination_from_main) such that implementing it would require guessing.
+
+- SS-02 Authority conflict: Applies if any seed entry or dataset structure conflicts with FB-321 schema constraints or ADR-0001 constraints.
+
+- SS-03 Missing immutable constraint mapping: applies if implementing omnibar submit routing touches an immutable constraint area but the required mapping/anchors are absent or unclear.
+
+- SS-04 Missing artefact: Applies if required authoritative inputs are missing (e.g., seed source text is unavailable, or FB-321 is not available to validate against).
+
+- SS-05 Inference required: Applies if completing the seed datasets would require inferring missing entries, fields, or values not explicitly provided.
+
+- SS-07 Verification ambiguity: Applies if acceptance criteria or verification steps cannot be executed deterministically (e.g., no record counts, no diffable source, or validation rules are underspecified).
+
+- SS-09 Drift signal: Applies if there is evidence of transcription loss or mismatch across documents (e.g., record counts differ between versions, or fields differ unexpectedly).
+
+- SS-11 Non-binary acceptance criteria: Applies if any acceptance criterion is not objectively testable (must be rewritten to be binary).
+
+- SS-12 Conflicting acceptance criteria: Applies if acceptance criteria conflict with each other or with authority requirements (must STOP and resolve).
+
 
 ## 14. rollout_and_rollback
 

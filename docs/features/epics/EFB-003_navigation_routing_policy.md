@@ -171,17 +171,17 @@ This is optional but reduces ambiguity during alpha.
 
 1. Strict mode (recommended once stable)
 
-* If a toolbar entry references an app_id not present in app_identity_table: STOP (configuration error).
-* If app_identity_table lacks required fields: STOP.
+- If a toolbar entry references an app_id not present in app_identity_table: STOP (configuration error).
+- If app_identity_table lacks required fields: STOP.
 
 2. Lenient alpha mode
 
-* Allow missing app_identity entries to fall back to:
+- Allow missing app_identity entries to fall back to:
 
-  * canonical origin = origin(default_launch_url)
-  * within_app_origin_allowlist = {canonical origin}
-  * default_destination_from_main = main
-  * Log locally (no telemetry).
+  - canonical origin = origin(default_launch_url)
+  - within_app_origin_allowlist = {canonical origin}
+  - default_destination_from_main = main
+  - Log locally (no telemetry).
 
 Status: orientation guidance only; implementable requirements must be specified in FB-3xx bundles.
 
@@ -189,8 +189,8 @@ Status: orientation guidance only; implementable requirements must be specified 
 
 ## Appendix G: Practical v0.1 simplifications you are still keeping
 
-* No wildcard origins in within_app_origin_allowlist.
-* Tenant-specific apps (e.g., Jira tenants, SharePoint tenants) are supported via task_worthy host_suffix rules, not within-app matching.
-* No DOM-level detection for semantic actions (ChatGPT “new chat”, Gmail “open doc with context tab”, etc.).
+- No wildcard origins in within_app_origin_allowlist.
+- Tenant-specific apps (e.g., Jira tenants, SharePoint tenants) are supported via task_worthy host_suffix rules, not within-app matching.
+- No DOM-level detection for semantic actions (ChatGPT “new chat”, Gmail “open doc with context tab”, etc.).
 
 Status: orientation guidance only; implementable requirements must be specified in FB-3xx bundles.

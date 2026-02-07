@@ -9,7 +9,7 @@ Non-goals: No behavioural inference; no DOM-level semantic detection; no “smar
 # Authority dependencies
 
 ADR dependencies (authoritative architecture):
- * docs/adrs/ADR-0002_State_Stores_and_Persistence_Boundaries.md (Decision: Separate session restore state from history records, with explicit persistence boundaries and crash-consistency rules; Applies to: persisted state model, retention boundaries, and crash/restore behaviour for History and Session Restore)
+ - docs/adrs/ADR-0002_state_stores_and_persistence_boundaries.md (Decision: Separate session restore state from history records, with explicit persistence boundaries and crash-consistency rules; Applies to: persisted state model, retention boundaries, and crash/restore behaviour for History and Session Restore)
 
 Rule: ADRs are normative for architecture and constraints. Implementable requirements live only in docs/features/impl/*. EFBs are orientation only and must not be implemented directly.
 

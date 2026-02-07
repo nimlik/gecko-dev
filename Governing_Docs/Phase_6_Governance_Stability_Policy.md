@@ -14,7 +14,7 @@ Update intent: include feature bundles as the primary evolving layer while prese
 Stable (rare change):
 
 - Phase 0–6 governance artefacts
-- Foundation Document v4
+- docs/importal_foundation_document_v5.md
 - Immutable constraints
 
 Evolving (regular change):
