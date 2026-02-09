@@ -223,6 +223,10 @@ Rules:
 
 - Vertical tabs exist only in Taskspaces
 
+- Tab grouping MUST be supported within Taskspaces
+
+- Tab groups MUST be scoped to a single Taskspace
+
 - Routing within a Taskspace MUST remain scoped to that Taskspace
 
 - Taskspaces MUST enforce privacy boundaries between user Taskspaces and other contexts.
@@ -252,17 +256,19 @@ Rules:
 
 - Omnibar dropdown is history-blind by default
 
-- Before explicit selection, it MUST show only:
+- Omnibar MUST provide a user-selectable web search provider selector for configured search engines
 
-- “Search Google”
+- Before explicit selection for a given query, the omnibar UI MUST:
+- show the available configured web search providers
+- show “URL”
+- when searching in th omnibar, render “Search Importal” as a persistent option below the search bar (regardless of selected web search provider)
 
-- “Search Importal”
+- History suggestions MUST NOT appear prior to explicit “Search Importal” selection
 
-- “URL”
 
 Behaviour (routing is defined by EFB-003; these clauses exist to prevent contradiction):
 
-- Selecting “Search Google”:
+- Selecting a configured web search provider:
 - From Main: open a new Taskspace with results
 - From a Taskspace: open results in the current Taskspace (default: new tab)
 
@@ -270,15 +276,12 @@ Behaviour (routing is defined by EFB-003; these clauses exist to prevent contrad
 
 - Selecting “URL”:
 - From a Taskspace: open the URL in the current Taskspace (default: new tab)
+
 - From Main:
 - If the URL’s origin matches a pinned app/site identity: show that app/site in Main
 - Else: open a new Taskspace with the URL in a new tab
 
 - History suggestions MUST NOT appear prior to explicit “Search Importal” selection
-
-- History results are organised by recency and Taskspace
-
-- A one-click “Open Taskspace” action MUST be present
 
 ---
 
@@ -303,6 +306,12 @@ Rules:
 Implementation detail is defined in the History Feature Bundle set (see EFB-004 for orientation). Any implementable FB under docs/features/impl/ must implement the above constitutional constraints and must not weaken them.
 
 UI views may filter or sort, but MUST NOT alter underlying records.
+
+### History UI (Locked)
+
+- History results are organised by recency and Taskspace
+
+- A one-click “Open Taskspace” action MUST be present
 
 ---
 
